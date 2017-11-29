@@ -1,0 +1,12 @@
+table#grid .cell {
+    border: 1px #aaaaaa;
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+    background-color: aliceblue;
+    border-style: groove;
+}
+
+table#grid {
+    margin: auto;
+}
