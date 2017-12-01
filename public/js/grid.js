@@ -1,7 +1,5 @@
 class Grid {
 
-
-
     constructor(height, width) {
         const DEFAULT_HEIGHT = 20
         const DEFAULT_WIDTH = 20
@@ -12,11 +10,6 @@ class Grid {
     }
 
     buildGrid() {
-        // var gridX = {}
-        // for (var i = 1; i <= this.width; i++) {
-        //     gridX[i] = this.buildGridY(i)
-        // }
-        // return gridX
         let grid = []
         for (let row = 0; row < this.width; row++) {
             let point = []
@@ -28,28 +21,6 @@ class Grid {
 
         return grid
     }
-
-    // buildGridY(currentX) {
-    //
-    //     var gridY = {}
-    //     for (var currentY = 1; currentY <= this.width; currentY++) {
-    //         gridY[currentY] = {
-    //             value: 0,
-    //             neighbors: {
-    //                 upperLeft: [(currentY - 1), (currentX - 1)],
-    //                 upper: [(currentY - 1), currentX],
-    //                 upperRight: [(currentY - 1), (currentX + 1)],
-    //                 right: [currentY, (currentX + 1)],
-    //                 lowerRight: [(currentY + 1), (currentX + 1)],
-    //                 lower: [(currentY + 1), currentX],
-    //                 lowerLeft: [(currentY - 1), (currentX - 1)],
-    //                 left: [currentY, (currentX - 1)]
-    //             }
-    //         }
-    //     }
-    //
-    //     return gridY
-    // }
 
     randomGrid(marks) {
         // Grid size
@@ -83,15 +54,6 @@ class Grid {
                     updatedGrid.grid[row][col] = 1
                 }
             }
-            // // preview new grid
-            // for (var y = 1; y <= 10; y++) {
-            //     var currentRow = []
-            //     for (var x = 1; x <= 10; x++) {
-            //         currentRow.push(updatedGrid.grid[y][x].value)
-            //     }
-            //     console.log(currentRow.join(' ') + '\n')
-            // }
-            // end preview
         }
 
         return updatedGrid
@@ -156,40 +118,8 @@ class Grid {
         if(this.grid[nRow][nCol]) {
             count++
         }
-
-
-
-        // Object.keys(cell.neighbors)
-        //     .forEach((n) => {
-        //         const nv = cell.neighbors[n]
-        //         if (nv[0] <= 0) {
-        //             nv[0] = this.width
-        //         }
-        //
-        //         if (nv[0] > this.width) {
-        //             nv[0] = 1
-        //         }
-        //
-        //         if (nv[1] <= 0) {
-        //             nv[1] = this.height
-        //         }
-        //
-        //         if (nv[1] > this.height) {
-        //             nv[1] = 1
-        //         }
-        //
-        //         if (this.grid[nv[0]][nv[1]].value) {
-        //             count++
-        //         }
-        //     })
-
         return count
     }
-
-    turnOn(x, y) {
-        grid[x][y] = 1
-    }
-
 }
 
 export default Grid
