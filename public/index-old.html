@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>LifeRecorded - A Web Implementation of Conway's Game of Life</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCGkdGTGtSVwChCZRSaErlJjM89nddo0yQ",
+                authDomain: "liferecorded-c730f.firebaseapp.com",
+                databaseURL: "https://liferecorded-c730f.firebaseio.com",
+                projectId: "liferecorded-c730f",
+                storageBucket: "liferecorded-c730f.appspot.com",
+                messagingSenderId: "315624832841"
+            };
+            firebase.initializeApp(config);
+
+            var database = firebase.database()
+        </script>
+        <!-- update the version number as needed -->
+        <script defer src="/__/firebase/4.6.2/firebase-app.js"></script>
+        <!-- include only the Firebase features as you need -->
+        <script defer src="/__/firebase/4.6.2/firebase-auth.js"></script>
+        <script defer src="/__/firebase/4.6.2/firebase-database.js"></script>
+        <script defer src="/__/firebase/4.6.2/firebase-messaging.js"></script>
+        <script defer src="/__/firebase/4.6.2/firebase-storage.js"></script>
+        <!-- initialize the SDK after all desired features are loaded -->
+        <script defer src="/__/firebase/init.js"></script>
+
+
+
+
+
+    </head>
+
+    <body>
+
+        <div id="main-container" class="container text-center">
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="rounds">Rounds</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" disabled="true" class="btn btn-primary" value="Generate New Randomized Grid" id="generate" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="number" name="rounds" id="rounds" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-primary" value="Start" id="start" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-primary" value="Stop" id="stop" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="coverage">Percent of grid coverage</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-primary" value="Reset" id="reset" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input type="number" name="coverage" id="coverage" />
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" class="btn btn-primary" value="Step" id="step" disabled="true" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Load Previous Game</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="col-sm-12">
+                                <label>Leaderboard - Most Unique Rounds</label>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h5>Grid ID</h5>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h5>Unique Rounds</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>03891252</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>192</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>83653811</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>190</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>63223438</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>185</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>45111934</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>182</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>84930321</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>177</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>98995606</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>176</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>73371014</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>156</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span>28118103</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>156</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="gridRef" id="gridRef" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="button" value="Load Game" id="load" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6">
+                            <span id="loadError" style="color: red;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12" style="height:40px;">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        </div>
+                        <div class="col-sm-6 text-left" style="background-color:#eee; padding: 10px;">
+                            <ul>
+                                <li>Choose live cells, or generate a random grid</li>
+                                <li>Step through each state manually or automatically</li>
+                                <li>Games that continue beyond 100 rounds without a duplicate state will be saved</li>
+                                <li>The leaderboard is recalculated hourly</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+                // // The Firebase SDK is initialized and available here!
+                //
+                // firebase.auth().onAuthStateChanged(user => { });
+                // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+                // firebase.messaging().requestPermission().then(() => { });
+                // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+                //
+                // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+                try {
+                    let app = firebase.app();
+                    let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+                }
+                catch (e) {
+                    console.error(e);
+                }
+            });
+        </script>
+        <script src="/js/lr.js"></script>
+    </body>
+
+</html>

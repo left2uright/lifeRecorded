@@ -1,7 +1,7 @@
 table#grid .cell {
     border: 1px #aaaaaa;
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     padding: 10px;
     background-color: aliceblue;
     border-style: groove;
@@ -10,3 +10,19 @@ table#grid .cell {
 table#grid {
     margin: auto;
 }
+
+.row {
+    margin: 10px auto 10px auto;
+}
+
+.row.hr {
+    margin: 0px auto 0px auto;
+}
+
+#locked {
+    color: #ff0000;
+}
+
+/*div {
+    border: 1px solid #000;
+}*/

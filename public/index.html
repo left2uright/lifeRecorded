@@ -43,220 +43,100 @@
     <body>
 
         <div id="main-container" class="container text-center">
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Turns elapsed: </label>
-                    <span id="tick"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12" style="margin-bottom:50px;">
-                    <table id="grid">
-                    </table>
-                </div>
-            </div>
 
             <div class="row">
-                <div class="col-sm-12" style="height:40px;">
+
+                <div class="col-xs-12 col-lg-8">
+
                     <div class="row">
-                        <div class="col-sm-6">
-                            <label for="rounds">Rounds</label>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="button" disabled="true" class="btn btn-primary" value="Generate New Randomized Grid" id="generate" />
+                        <div class="col-xs-12">
+                            <table id="grid">
+                            </table>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
+
                     <div class="row">
-                        <div class="col-sm-6">
-                            <input type="number" name="rounds" id="rounds" />
+                        <div class="col-xs-12">
+                            <label>Turns elapsed: </label>
+                            <span id="tick"></span>
                         </div>
-                        <div class="col-sm-6">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label>Game Reference#: </label>
+                            <span id="gameRef"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span id="locked"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-lg-4">
+
+                    <div class="row main-controls">
+                        <div class="col-xs-3">
                             <input type="button" class="btn btn-primary" value="Start" id="start" disabled="true" />
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
-                    <div class="row">
-                        <div class="col-sm-6">
-
-                        </div>
-                        <div class="col-sm-6">
+                        <div class="col-xs-3">
                             <input type="button" class="btn btn-primary" value="Stop" id="stop" disabled="true" />
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="coverage">Percent of grid coverage</label>
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="button" class="btn btn-primary" value="Reset" id="reset" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <input type="number" name="coverage" id="coverage" />
-                        </div>
-                        <div class="col-sm-6">
+                        <div class="col-xs-3">
                             <input type="button" class="btn btn-primary" value="Step" id="step" disabled="true" />
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
-                    <div class="row">
-                        <div class="col-sm-6">
-                        </div>
-                        <div class="col-sm-6">
-                            <label>Load Previous Game</label>
+                        <div class="col-xs-3">
+                            <input type="button" class="btn btn-primary" value="Reset" id="reset" disabled="true" />
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
+                    <div class="row hr">
+                        <hr/>
+                    </div>
+
                     <div class="row">
-                        <div class="col-sm-6">
-                            <div class="col-sm-12">
-                                <label>Leaderboard - Most Unique Rounds</label>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h5>Grid ID</h5>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h5>Unique Rounds</h5>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>03891252</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>192</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>83653811</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>190</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>63223438</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>185</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>45111934</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>182</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>84930321</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>177</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>98995606</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>176</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>73371014</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>156</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <span>28118103</span>
-                                </div>
-                                <div class="col-sm-6">
-                                    <span>156</span>
-                                </div>
-                            </div>
+                        <div class="col-xs-6 col-lg-8">
+                            <label for="coverage">Percent of grid coverage: </label>
+                            <input type="number" name="coverage" id="coverage" placeholder="%" />
                         </div>
-                        <div class="col-sm-6">
-                            <input type="text" name="gridRef" id="gridRef" />
+                        <div class="col-xs-6 col-lg-4">
+                            <input type="button"  class="btn btn-primary" value="Generate" id="generate" disabled="true"/>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="row hr">
+                        <hr/>
+                    </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-xs-6 col-lg-8">
+                            <label for="gridRef">Load Previous Game</label>
+                            <input type="number" name="gridRef" id="gridRef" placeholder="Ref#" />
                         </div>
-                        <div class="col-sm-6">
-                            <input type="button" value="Load Game" id="load" />
+                        <div class="col-xs-6 col-lg-4">
+                            <input type="button" class="btn btn-primary" value="Load Game" id="load" disabled="true"  />
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-xs-6 col-lg-8">
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-xs-6 col-lg-4">
                             <span id="loadError" style="color: red;"></span>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12" style="height:40px;">
+                    <div class="row hr">
+                        <hr/>
+                    </div>
+
                     <div class="row">
-                        <div class="col-sm-6">
-                        </div>
-                        <div class="col-sm-6 text-left" style="background-color:#eee; padding: 10px;">
-                            <ul>
-                                <li>Choose live cells, or generate a random grid</li>
-                                <li>Step through each state manually or automatically</li>
-                                <li>Games that continue beyond 100 rounds without a duplicate state will be saved</li>
-                                <li>The leaderboard is recalculated hourly</li>
-                            </ul>
-
+                        <div class="col-xs-12" id="leaderboard-container">
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

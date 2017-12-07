@@ -5,6 +5,7 @@ class Grid {
         const DEFAULT_WIDTH = 20
         this.height = height || DEFAULT_HEIGHT
         this.width = width || DEFAULT_WIDTH
+        this.states = []
         this.grid = this.buildGrid()
 
     }
@@ -44,7 +45,9 @@ class Grid {
     }
 
     iterate() {
+        this.states.push(this.grid.slice())
         const updatedGrid = new Grid(this.height, this.width)
+        updatedGrid.states = this.states
         for (var row = 0; row < this.height; row++) {
             for (var col = 0; col < this.width; col++) {
                 var neighborCount = this.getNeighborCount(row, col)
@@ -56,7 +59,36 @@ class Grid {
             }
         }
 
+        if (this.isDuplicateGrid(updatedGrid) || this.isEmptyGrid(updatedGrid)) {
+            updatedGrid.locked = true
+        }
+
         return updatedGrid
+    }
+
+    isEmptyGrid(next) {
+        let isEmpty = false
+        if (/0{400}/.test(this.stringifyGrid(next.grid))) {
+            isEmpty = true
+        }
+        return isEmpty
+    }
+
+    isDuplicateGrid(next) {
+        let isDup = false
+        const nextString = this.stringifyGrid(next.grid)
+        this.states.forEach((prevGrid) => {
+            if (this.stringifyGrid(prevGrid) === nextString) {
+                isDup = true
+            }
+        })
+        return isDup
+    }
+
+    stringifyGrid(gridToString) {
+        return gridToString.map((row) => {
+            return row.join('')
+        }).join('')
     }
 
     getNeighborCount(row, col) {
