@@ -12,6 +12,7 @@ let isLoaded = false
 let isLocked = false
 let gameRef
 let saveThreshold
+
 const gridRefURL = 'https://us-central1-liferecorded-c730f.cloudfunctions.net/getGridRef'
 const leaderboardURL = 'https://us-central1-liferecorded-c730f.cloudfunctions.net/getLeaderboard'
 const loadGridURL = 'https://us-central1-liferecorded-c730f.cloudfunctions.net/loadGrid'
@@ -75,7 +76,7 @@ export default {
                         (res) => {
                             if (res.isSaved) {
                                 document.querySelector('#locked')
-                                .innerHTML += `Your score made it on to the leaderboard! As long as it remains in the top ten scores, you can use your game's reference number to load and replay the game!`
+                                .innerHTML += `Your score made it on to the leaderboard! You can use your game's reference number to load and replay the game!`
                                 updateLeaderboard()
                             }
                         })
@@ -133,7 +134,7 @@ export default {
                             (res) => {
                                 if (res.isSaved) {
                                     document.querySelector('#locked')
-                                    .innerHTML += `<br/>Your score made it on to the leaderboard! As long as it remains in the top ten scores, you can use your game's reference number to load and replay the game!`
+                                    .innerHTML += `<br/>Your score made it on to the leaderboard! You can use your game's reference number to load and replay the game!`
                                     updateLeaderboard()
                                 }
                             })
